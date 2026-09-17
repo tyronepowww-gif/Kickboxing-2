@@ -2,2481 +2,2584 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover">
 
-<meta
-  name="viewport"
-  content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no"
->
-
-<meta name="theme-color" content="#08090c">
+<meta name="theme-color" content="#090b12">
 
 <title>T-Chamber Kickboxing</title>
 
 <style>
-
-:root{
-  --bg:#08090c;
-  --panel:#11141a;
-  --panel2:#171b22;
-  --line:#292f38;
-  --text:#f4f5f7;
-  --muted:#858e9b;
-  --danger:#ef8585;
-  --good:#9de0ad;
-  --warning:#e7ca7c;
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
-*{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: #090b12;
+  color: #f4f6fb;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-html,body{
-  margin:0;
-  padding:0;
-  min-height:100%;
-  background:var(--bg);
-  color:var(--text);
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Arial,
-    sans-serif;
-}
-
-body{
-  min-height:100vh;
-  min-height:100dvh;
+body {
+  display: flex;
+  justify-content: center;
 }
 
 button,
-select{
-  font:inherit;
+select {
+  font: inherit;
 }
 
-button{
-  border:1px solid var(--line);
-  background:var(--panel2);
-  color:var(--text);
-  border-radius:14px;
-  cursor:pointer;
-  touch-action:manipulation;
+button {
+  cursor: pointer;
 }
 
-button:active{
-  transform:scale(.98);
+button:disabled {
+  opacity: .35;
+  cursor: default;
 }
 
-.app{
-  width:min(760px,100%);
-  min-height:100vh;
-  min-height:100dvh;
-  margin:auto;
-  padding:
-    max(18px,env(safe-area-inset-top))
-    16px
-    max(18px,env(safe-area-inset-bottom));
+.app {
+  width: 100%;
+  max-width: 760px;
+  min-height: 100vh;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:5px 0 18px;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.logo{
-  font-size:15px;
-  font-weight:900;
-  letter-spacing:.14em;
+.logo {
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 2px;
 }
 
-.version{
-  color:var(--muted);
-  font-size:10px;
-  letter-spacing:.08em;
+.subtitle {
+  color: #858ea1;
+  font-size: 11px;
+  margin-top: 3px;
 }
 
-.screen{
-  display:none;
-  min-height:calc(100vh - 80px);
-  flex-direction:column;
+.status {
+  border: 1px solid #303849;
+  border-radius: 999px;
+  padding: 7px 10px;
+  color: #aab3c4;
+  font-size: 10px;
+  font-weight: 800;
 }
 
-.screen.active{
-  display:flex;
+.panel {
+  background: #111521;
+  border: 1px solid #242b3a;
+  border-radius: 16px;
+  padding: 14px;
 }
 
-.hero{
-  padding:18px 0 25px;
+.panel-title {
+  color: #818b9e;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
 }
 
-.hero h1{
-  margin:0 0 12px;
-  font-size:clamp(40px,11vw,68px);
-  line-height:.9;
-  letter-spacing:-.055em;
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
 
-.hero p{
-  color:var(--muted);
-  max-width:600px;
-  line-height:1.5;
-  font-size:14px;
+.field label {
+  display: block;
+  color: #929caf;
+  font-size: 10px;
+  margin-bottom: 6px;
 }
 
-.card{
-  background:var(--panel);
-  border:1px solid var(--line);
-  border-radius:20px;
-  padding:18px;
-  margin-bottom:12px;
+select {
+  width: 100%;
+  padding: 11px;
+  background: #0a0d14;
+  color: white;
+  border: 1px solid #303849;
+  border-radius: 10px;
+  outline: none;
 }
 
-.section-title{
-  margin-bottom:10px;
-  color:var(--muted);
-  font-size:10px;
-  font-weight:800;
-  letter-spacing:.12em;
-  text-transform:uppercase;
+.btn {
+  width: 100%;
+  border: 0;
+  border-radius: 12px;
+  padding: 15px 12px;
+  background: #242b39;
+  color: white;
+  font-weight: 900;
 }
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:9px;
+.btn:active {
+  transform: scale(.985);
 }
 
-.option{
-  min-height:67px;
-  padding:12px;
-  text-align:left;
+.primary {
+  background: #f4f6fb;
+  color: #090b12;
 }
 
-.option strong{
-  display:block;
-  font-size:14px;
-  margin-bottom:4px;
+.danger {
+  background: #351d24;
+  color: #ffb8c3;
 }
 
-.option small{
-  color:var(--muted);
-  font-size:10px;
+.wide {
+  grid-column: 1 / -1;
 }
 
-.option.selected{
-  border-color:var(--text);
-  background:#20252d;
-}
-
-.primary{
-  width:100%;
-  min-height:60px;
-  border-color:var(--text);
-  background:var(--text);
-  color:#08090c;
-  font-weight:900;
-  letter-spacing:.06em;
-}
-
-.secondary{
-  width:100%;
-  min-height:50px;
-}
-
-.notice{
-  color:var(--muted);
-  border:1px solid var(--line);
-  border-radius:15px;
-  padding:14px;
-  font-size:11px;
-  line-height:1.55;
-  margin-bottom:15px;
-}
-
-.notice strong{
-  color:var(--text);
-}
-
-/* =========================
-   RIVAL SELECT
-========================= */
-
-.rival-grid{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:9px;
-}
-
-.rival-option{
-  padding:15px;
-  text-align:left;
-}
-
-.rival-option strong{
-  display:block;
-  margin-bottom:6px;
-}
+/* TIMER */
 
-.rival-option small{
-  color:var(--muted);
-  line-height:1.4;
+.timer-panel {
+  text-align: center;
 }
 
-.rival-option.selected{
-  border-color:var(--text);
+.timer-label {
+  color: #747e91;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 2px;
 }
 
-/* =========================
-   TRAINING
-========================= */
-
-.top-stats{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:7px;
-  margin-bottom:9px;
+.timer {
+  font-size: clamp(42px, 13vw, 76px);
+  font-weight: 1000;
+  line-height: 1;
+  margin-top: 5px;
+  font-variant-numeric: tabular-nums;
 }
 
-.stat{
-  min-width:0;
-  padding:10px;
-  background:var(--panel);
-  border:1px solid var(--line);
-  border-radius:12px;
+.timer.warning {
+  animation: pulse .7s infinite alternate;
 }
 
-.stat-label{
-  color:var(--muted);
-  font-size:8px;
-  text-transform:uppercase;
-  letter-spacing:.08em;
-  margin-bottom:4px;
+@keyframes pulse {
+  from { opacity: 1; }
+  to { opacity: .45; }
 }
 
-.stat-value{
-  font-size:14px;
-  font-weight:900;
-  overflow:hidden;
-  white-space:nowrap;
-  text-overflow:ellipsis;
-}
+/* RIVAL */
 
-.progress{
-  height:5px;
-  background:var(--panel2);
-  border-radius:99px;
-  overflow:hidden;
-  margin-bottom:12px;
+.rival-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
 }
 
-.progress-bar{
-  width:0%;
-  height:100%;
-  background:var(--text);
-  transition:width .2s linear;
+.rival-name {
+  font-size: 19px;
+  font-weight: 900;
 }
 
-/* =========================
-   RIVAL CARD
-========================= */
-
-.rival-card{
-  background:var(--panel);
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:15px;
-  margin-bottom:10px;
+.rival-type {
+  color: #858ea1;
+  font-size: 11px;
+  margin-top: 3px;
 }
 
-.rival-header{
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
+.rival-stats {
+  text-align: right;
+  color: #929caf;
+  font-size: 10px;
+  line-height: 1.55;
 }
 
-.rival-name{
-  font-weight:900;
-  font-size:16px;
-}
+/* METERS */
 
-.rival-phase{
-  color:var(--danger);
-  font-size:10px;
-  font-weight:900;
-  letter-spacing:.1em;
-  text-transform:uppercase;
+.meters {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 12px;
 }
 
-.rival-message{
-  color:var(--muted);
-  margin-top:6px;
-  font-size:12px;
+.meter-label {
+  display: flex;
+  justify-content: space-between;
+  color: #929caf;
+  font-size: 9px;
+  margin-bottom: 5px;
 }
 
-.meter{
-  margin-top:12px;
+.meter {
+  height: 7px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: #080a10;
+  border: 1px solid #252c3a;
 }
 
-.meter-label{
-  display:flex;
-  justify-content:space-between;
-  color:var(--muted);
-  font-size:9px;
-  margin-bottom:4px;
+.meter-fill {
+  height: 100%;
+  width: 0%;
+  transition: width .2s ease;
 }
 
-.meter-track{
-  height:4px;
-  background:var(--panel2);
-  border-radius:99px;
-  overflow:hidden;
-}
+/* GAME */
 
-.meter-fill{
-  height:100%;
-  width:50%;
-  background:var(--text);
-  transition:width .3s ease;
+.game {
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
 }
 
-/* =========================
-   CUE
-========================= */
-
-.cue-card{
-  flex:1;
-  min-height:370px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  background:var(--panel);
-  border:1px solid var(--line);
-  border-radius:24px;
-  padding:25px 18px;
-  margin-bottom:10px;
+.phase {
+  color: #929caf;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 2px;
 }
 
-.cue-category{
-  color:var(--muted);
-  font-size:10px;
-  font-weight:900;
-  letter-spacing:.15em;
-  text-transform:uppercase;
-  margin-bottom:18px;
+.rival-action {
+  min-height: 20px;
+  color: #737e92;
+  font-size: 11px;
 }
 
-.cue{
-  font-size:clamp(36px,10vw,68px);
-  line-height:.95;
-  font-weight:950;
-  letter-spacing:-.055em;
-  margin-bottom:20px;
+.cue-box {
+  padding: 20px 5px;
 }
 
-.cue-detail{
-  max-width:520px;
-  color:var(--muted);
-  font-size:14px;
-  line-height:1.5;
+.cue-category {
+  color: #7e889b;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin-bottom: 13px;
 }
 
-.phase-message{
-  margin-top:20px;
-  color:var(--warning);
-  font-size:10px;
-  font-weight:900;
-  letter-spacing:.1em;
+.cue {
+  font-size: clamp(38px, 10vw, 68px);
+  line-height: 1;
+  font-weight: 1000;
+  letter-spacing: -2px;
 }
 
-.actions{
-  display:grid;
-  grid-template-columns:2fr 1fr 1fr;
-  gap:8px;
+.instruction {
+  max-width: 560px;
+  min-height: 40px;
+  margin: 14px auto 0;
+  color: #aab3c3;
+  font-size: 13px;
+  line-height: 1.5;
 }
 
-.done{
-  min-height:62px;
-  background:var(--text);
-  color:#08090c;
-  border-color:var(--text);
-  font-weight:900;
+.count {
+  color: #606b7e;
+  font-size: 10px;
 }
 
-.action{
-  min-height:62px;
-}
+/* RESULTS */
 
-.end{
-  width:100%;
-  margin-top:8px;
-  min-height:44px;
-  background:transparent;
-  color:var(--muted);
+.results {
+  display: none;
 }
 
-/* =========================
-   PAUSE
-========================= */
-
-.pause{
-  margin:auto 0;
-  text-align:center;
-  padding:30px 20px;
+.results.show {
+  display: block;
 }
 
-.pause h2{
-  font-size:38px;
-  margin:0 0 10px;
+.result-message {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 1000;
+  margin: 8px 0 18px;
 }
 
-.pause p{
-  color:var(--muted);
-  line-height:1.5;
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
 }
-
-/* =========================
-   RESULTS
-========================= */
 
-.result-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:9px;
+.result-stat {
+  padding: 12px 5px;
+  background: #0a0d14;
+  border: 1px solid #252c3a;
+  border-radius: 10px;
+  text-align: center;
 }
 
-.result{
-  background:var(--panel2);
-  border-radius:13px;
-  padding:15px;
+.result-number {
+  font-size: 21px;
+  font-weight: 900;
 }
 
-.result-label{
-  color:var(--muted);
-  font-size:9px;
-  text-transform:uppercase;
-  letter-spacing:.08em;
-  margin-bottom:5px;
+.result-label {
+  color: #747e91;
+  font-size: 8px;
+  margin-top: 3px;
 }
 
-.result-value{
-  font-size:21px;
-  font-weight:900;
-}
+/* LOG */
 
-.history-row{
-  display:grid;
-  grid-template-columns:1fr auto;
-  gap:10px;
-  padding:12px 0;
-  border-bottom:1px solid var(--line);
+.log {
+  max-height: 125px;
+  overflow-y: auto;
 }
 
-.history-row strong{
-  display:block;
-  font-size:12px;
-  margin-bottom:3px;
+.log-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 7px 0;
+  border-bottom: 1px solid #1e2532;
+  font-size: 10px;
 }
 
-.history-row small{
-  color:var(--muted);
-  font-size:10px;
+.log-result {
+  color: #737e92;
 }
 
-.history-right{
-  text-align:right;
-  font-size:11px;
+.footer {
+  text-align: center;
+  color: #505a6d;
+  font-size: 9px;
+  padding-bottom: 10px;
 }
 
-.footer{
-  color:#626a75;
-  font-size:9px;
-  line-height:1.5;
-  text-align:center;
-  margin-top:auto;
-  padding-top:18px;
+.hidden {
+  display: none !important;
 }
-
-@media(min-width:600px){
 
-  .grid{
-    grid-template-columns:repeat(3,1fr);
+@media (max-width: 500px) {
+  .app {
+    padding: 10px;
   }
 
-  .rival-grid{
-    grid-template-columns:repeat(2,1fr);
+  .grid {
+    grid-template-columns: 1fr;
   }
 
-}
+  .cue {
+    font-size: 43px;
+  }
 
+  .game {
+    min-height: 335px;
+  }
+}
 </style>
 </head>
-
 
 <body>
 
 <div class="app">
 
-<header class="header">
-  <div class="logo">T-CHAMBER</div>
-  <div class="version">KICKBOXING • V2</div>
-</header>
-
-
-<!-- ======================================================
-     HOME
-====================================================== -->
-
-<section id="home" class="screen active">
-
-  <div class="hero">
-
-    <h1>
-      ENTER<br>
-      CHAMBER.
-    </h1>
-
-    <p>
-      A sensor-free kickboxing training director.
-      The Chamber creates the fight, gives you the command,
-      and keeps the session moving while you perform the
-      physical work yourself.
-    </p>
-
-  </div>
-
-
-  <div class="notice">
-
-    <strong>Independent engine.</strong>
-    No camera, motion tracking, Scouter, wearable,
-    controller, account, or external game engine is required.
-    DONE means you performed the instructed action.
-
-  </div>
-
-
-  <!-- TRAINING MODE -->
-
-  <div class="card">
-
-    <div class="section-title">
-      Training Mode
+  <header class="header">
+    <div>
+      <div class="logo">T-CHAMBER</div>
+      <div class="subtitle">Kickboxing Training Engine</div>
     </div>
 
-    <div id="modeGrid" class="grid">
+    <div class="status" id="status">READY</div>
+  </header>
 
-      <button class="option selected" data-mode="technical">
-        <strong>Technical</strong>
-        <small>Mechanics and controlled execution</small>
-      </button>
 
-      <button class="option" data-mode="practice">
-        <strong>Practice</strong>
-        <small>Continuous combinations</small>
-      </button>
+  <!-- SETUP -->
 
-      <button class="option" data-mode="sparring">
-        <strong>Sparring</strong>
-        <small>Opponent-driven reactions</small>
-      </button>
+  <section class="panel" id="setupPanel">
 
-      <button class="option" data-mode="fight">
-        <strong>Fight Pace</strong>
-        <small>High-density commands</small>
-      </button>
+    <div class="panel-title">Training Setup</div>
+
+    <div class="grid">
+
+      <div class="field">
+        <label>MODE</label>
+
+        <select id="mode">
+          <option value="technical">Technical</option>
+          <option value="practice" selected>Practice</option>
+          <option value="sparring">Sparring</option>
+          <option value="fight">Fight Pace</option>
+        </select>
+      </div>
+
+
+      <div class="field">
+        <label>AI RIVAL</label>
+
+        <select id="rival">
+          <option value="pressure">Iron Pressure</option>
+          <option value="counter">Phantom Counter</option>
+          <option value="kick">Kick Hunter</option>
+          <option value="mirror">Mirror</option>
+        </select>
+      </div>
+
+
+      <div class="field">
+        <label>SESSION</label>
+
+        <select id="duration">
+          <option value="1">1 minute</option>
+          <option value="3" selected>3 minutes</option>
+          <option value="5">5 minutes</option>
+          <option value="10">10 minutes</option>
+        </select>
+      </div>
+
+
+      <div class="field">
+        <label>DENSITY</label>
+
+        <select id="density">
+          <option value="1">1× Controlled</option>
+          <option value="2" selected>2× Normal</option>
+          <option value="3">3× Hard</option>
+          <option value="5">5× Extreme</option>
+        </select>
+      </div>
 
     </div>
 
-  </div>
+    <div style="height:10px"></div>
+
+    <button
+      class="btn primary wide"
+      id="startBtn">
+      START CHAMBER
+    </button>
+
+  </section>
 
 
-  <!-- DENSITY -->
+  <!-- HARD STOP TIMER -->
 
-  <div class="card">
+  <section class="panel timer-panel">
 
-    <div class="section-title">
-      Density
+    <div class="timer-label">
+      TIME REMAINING
     </div>
 
-    <div id="densityGrid" class="grid">
-
-      <button class="option selected" data-density="1">
-        <strong>1×</strong>
-        <small>Technical</small>
-      </button>
-
-      <button class="option" data-density="2">
-        <strong>2×</strong>
-        <small>Practice</small>
-      </button>
-
-      <button class="option" data-density="3">
-        <strong>3×</strong>
-        <small>Sparring</small>
-      </button>
-
-      <button class="option" data-density="5">
-        <strong>5×</strong>
-        <small>Fight pace</small>
-      </button>
-
+    <div
+      class="timer"
+      id="timer">
+      03:00
     </div>
 
-  </div>
-
-
-  <!-- DURATION -->
-
-  <div class="card">
-
-    <div class="section-title">
-      Session
-    </div>
-
-    <div id="durationGrid" class="grid">
-
-      <button class="option" data-duration="1">
-        <strong>1 MIN</strong>
-        <small>Quick test</small>
-      </button>
-
-      <button class="option selected" data-duration="3">
-        <strong>3 MIN</strong>
-        <small>Short round</small>
-      </button>
-
-      <button class="option" data-duration="5">
-        <strong>5 MIN</strong>
-        <small>Standard round</small>
-      </button>
-
-      <button class="option" data-duration="10">
-        <strong>10 MIN</strong>
-        <small>Extended session</small>
-      </button>
-
-    </div>
-
-  </div>
+  </section>
 
 
   <!-- RIVAL -->
 
-  <div class="card">
+  <section class="panel">
 
-    <div class="section-title">
-      AI Rival
-    </div>
+    <div class="panel-title">AI Rival</div>
 
-    <div id="rivalGrid" class="rival-grid">
+    <div class="rival-card">
 
-      <button class="rival-option selected" data-rival="pressure">
+      <div>
+        <div
+          class="rival-name"
+          id="rivalName">
+          Iron Pressure
+        </div>
 
-        <strong>IRON PRESSURE</strong>
+        <div
+          class="rival-type"
+          id="rivalType">
+          Constant forward pressure
+        </div>
+      </div>
 
-        <small>
-          Walks you down and attempts to keep you moving.
-        </small>
-
-      </button>
-
-
-      <button class="rival-option" data-rival="counter">
-
-        <strong>PHANTOM COUNTER</strong>
-
-        <small>
-          Waits for openings and changes defensive patterns.
-        </small>
-
-      </button>
-
-
-      <button class="rival-option" data-rival="kicker">
-
-        <strong>KICK HUNTER</strong>
-
-        <small>
-          Controls range with kicks and lateral movement.
-        </small>
-
-      </button>
-
-
-      <button class="rival-option" data-rival="mirror">
-
-        <strong>MIRROR</strong>
-
-        <small>
-          Adapts its pressure pattern throughout the session.
-        </small>
-
-      </button>
+      <div
+        class="rival-stats"
+        id="rivalStats">
+      </div>
 
     </div>
 
-  </div>
 
-
-  <button id="start" class="primary">
-    START CHAMBER
-  </button>
-
-
-  <div class="footer">
-    T-Chamber directs training. It does not measure physical execution.
-  </div>
-
-</section>
-
-
-<!-- ======================================================
-     TRAINING
-====================================================== -->
-
-<section id="training" class="screen">
-
-
-  <div class="top-stats">
-
-    <div class="stat">
-      <div class="stat-label">Time</div>
-      <div id="time" class="stat-value">00:00</div>
-    </div>
-
-    <div class="stat">
-      <div class="stat-label">Cues</div>
-      <div id="cueCount" class="stat-value">0</div>
-    </div>
-
-    <div class="stat">
-      <div class="stat-label">Done</div>
-      <div id="doneCount" class="stat-value">0</div>
-    </div>
-
-    <div class="stat">
-      <div class="stat-label">Phase</div>
-      <div id="phase" class="stat-value">1</div>
-    </div>
-
-  </div>
-
-
-  <div class="progress">
-    <div id="progressBar" class="progress-bar"></div>
-  </div>
-
-
-  <!-- RIVAL -->
-
-  <div class="rival-card">
-
-    <div class="rival-header">
+    <div class="meters">
 
       <div>
 
-        <div id="rivalName" class="rival-name">
-          IRON PRESSURE
+        <div class="meter-label">
+          <span>PRESSURE</span>
+          <span id="pressureText">0</span>
         </div>
 
-        <div id="rivalMessage" class="rival-message">
-          Rival is observing.
+        <div class="meter">
+          <div
+            class="meter-fill"
+            id="pressureBar">
+          </div>
         </div>
 
       </div>
 
-      <div id="phaseName" class="rival-phase">
-        OBSERVE
+
+      <div>
+
+        <div class="meter-label">
+          <span>RIVAL STAMINA</span>
+          <span id="staminaText">100</span>
+        </div>
+
+        <div class="meter">
+          <div
+            class="meter-fill"
+            id="staminaBar">
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- GAME -->
+
+  <section class="panel game">
+
+    <div
+      class="phase"
+      id="phase">
+      CHAMBER READY
+    </div>
+
+
+    <div
+      class="rival-action"
+      id="rivalAction">
+      Choose your settings and start.
+    </div>
+
+
+    <div class="cue-box">
+
+      <div
+        class="cue-category"
+        id="cueCategory">
+        WAITING
+      </div>
+
+      <div
+        class="cue"
+        id="cue">
+        READY
+      </div>
+
+      <div
+        class="instruction"
+        id="instruction">
+        The Chamber will tell you what to do.
       </div>
 
     </div>
 
 
-    <div class="meter">
-
-      <div class="meter-label">
-        <span>RIVAL PRESSURE</span>
-        <span id="pressureNumber">0</span>
-      </div>
-
-      <div class="meter-track">
-        <div id="pressureMeter" class="meter-fill"></div>
-      </div>
-
+    <div
+      class="count"
+      id="count">
+      Cue 0
     </div>
 
-
-    <div class="meter">
-
-      <div class="meter-label">
-        <span>RIVAL STAMINA</span>
-        <span id="staminaNumber">100</span>
-      </div>
-
-      <div class="meter-track">
-        <div id="staminaMeter" class="meter-fill"></div>
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <!-- CUE -->
-
-  <div class="cue-card">
-
-    <div id="cueCategory" class="cue-category">
-      READY
-    </div>
-
-    <div id="cue" class="cue">
-      READY
-    </div>
-
-    <div id="cueDetail" class="cue-detail">
-      Prepare yourself.
-    </div>
-
-    <div id="phaseMessage" class="phase-message">
-      WAITING
-    </div>
-
-  </div>
+  </section>
 
 
   <!-- CONTROLS -->
 
-  <div class="actions">
+  <section class="controls grid">
 
-    <button id="done" class="done">
+    <button
+      class="btn primary"
+      id="doneBtn"
+      disabled>
       DONE
     </button>
 
-    <button id="skip" class="action">
+    <button
+      class="btn danger"
+      id="skipBtn"
+      disabled>
       SKIP
     </button>
 
-    <button id="pause" class="action">
-      PAUSE
+    <button
+      class="btn wide"
+      id="stopBtn"
+      disabled>
+      END SESSION
     </button>
 
-  </div>
+  </section>
 
 
-  <button id="end" class="end">
-    END SESSION
-  </button>
+  <!-- RESULTS -->
 
-</section>
+  <section
+    class="panel results"
+    id="results">
 
-
-<!-- ======================================================
-     PAUSE
-====================================================== -->
-
-<section id="pauseScreen" class="screen">
-
-  <div class="pause">
-
-    <div class="card">
-
-      <h2>PAUSED</h2>
-
-      <p>
-        The rival is frozen.
-        Resume when you're ready.
-      </p>
-
-      <button id="resume" class="primary">
-        RESUME
-      </button>
-
-      <br><br>
-
-      <button id="pauseEnd" class="secondary">
-        END SESSION
-      </button>
-
+    <div class="panel-title">
+      SESSION COMPLETE
     </div>
 
-  </div>
-
-</section>
-
-
-<!-- ======================================================
-     RESULTS
-====================================================== -->
-
-<section id="results" class="screen">
-
-  <div class="hero">
-
-    <h1>
-      SESSION<br>
-      COMPLETE.
-    </h1>
-
-    <p id="resultMessage">
-      Chamber block complete.
-    </p>
-
-  </div>
-
-
-  <div class="card">
-
-    <div class="section-title">
-      Fight Record
+    <div
+      class="result-message"
+      id="resultMessage">
+      CHAMBER COMPLETE
     </div>
+
 
     <div class="result-grid">
 
-      <div class="result">
-        <div class="result-label">Rival</div>
-        <div id="resultRival" class="result-value">
-          -
-        </div>
-      </div>
-
-      <div class="result">
-        <div class="result-label">Phase</div>
-        <div id="resultPhase" class="result-value">
-          -
-        </div>
-      </div>
-
-      <div class="result">
-        <div class="result-label">Cues</div>
-        <div id="resultCues" class="result-value">
+      <div class="result-stat">
+        <div
+          class="result-number"
+          id="resultCues">
           0
         </div>
-      </div>
 
-      <div class="result">
-        <div class="result-label">Completed</div>
-        <div id="resultDone" class="result-value">
-          0
+        <div class="result-label">
+          CUES
         </div>
       </div>
 
-      <div class="result">
-        <div class="result-label">Skipped</div>
-        <div id="resultSkipped" class="result-value">
+
+      <div class="result-stat">
+        <div
+          class="result-number"
+          id="resultDone">
           0
+        </div>
+
+        <div class="result-label">
+          DONE
         </div>
       </div>
 
-      <div class="result">
-        <div class="result-label">Pressure</div>
-        <div id="resultPressure" class="result-value">
+
+      <div class="result-stat">
+        <div
+          class="result-number"
+          id="resultSkipped">
           0
+        </div>
+
+        <div class="result-label">
+          SKIPPED
         </div>
       </div>
 
     </div>
 
+    <div style="height:12px"></div>
+
+    <button
+      class="btn primary wide"
+      id="againBtn">
+      RUN AGAIN
+    </button>
+
+  </section>
+
+
+  <!-- LOG -->
+
+  <section class="panel">
+
+    <div class="panel-title">
+      COMBAT LOG
+    </div>
+
+    <div
+      class="log"
+      id="log">
+      <div style="color:#596376;font-size:10px">
+        No actions yet.
+      </div>
+    </div>
+
+  </section>
+
+
+  <div class="footer">
+    T-Chamber is local-only. DONE means you performed the cue.
   </div>
-
-
-  <div class="card">
-
-    <div class="section-title">
-      Campaign
-    </div>
-
-    <div class="result-grid">
-
-      <div class="result">
-        <div class="result-label">Sessions</div>
-        <div id="careerSessions" class="result-value">
-          0
-        </div>
-      </div>
-
-      <div class="result">
-        <div class="result-label">Rivals</div>
-        <div id="careerRivals" class="result-value">
-          0
-        </div>
-      </div>
-
-      <div class="result">
-        <div class="result-label">Bosses</div>
-        <div id="careerBosses" class="result-value">
-          0
-        </div>
-      </div>
-
-      <div class="result">
-        <div class="result-label">Total Cues</div>
-        <div id="careerCues" class="result-value">
-          0
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="card">
-
-    <div class="section-title">
-      Local History
-    </div>
-
-    <div id="history"></div>
-
-  </div>
-
-
-  <button id="again" class="primary">
-    RUN IT BACK
-  </button>
-
-  <br>
-
-  <button id="homeButton" class="secondary">
-    RETURN HOME
-  </button>
-
-</section>
-
 
 </div>
 
 
 <script>
+"use strict";
 
-/* ============================================================
-   T-CHAMBER KICKBOXING ENGINE
-   ============================================================
+/*
+=========================================================
+T-CHAMBER ENGINE
+=========================================================
 
-   CORE PRINCIPLE:
+HARD STOP ARCHITECTURE
 
-   T-Chamber does not sense the fighter.
+sessionStart
+     ↓
+countdown
+     ↓
+cue
+     ↓
+DONE / SKIP
+     ↓
+next cue
+     ↓
+countdown reaches 00:00
+     ↓
+HARD STOP
+     ↓
+RESULTS
 
-   It creates:
+IMPORTANT:
 
-       RIVAL STATE
-            ↓
-       TRAINING CUE
-            ↓
-       USER PERFORMS ACTION
-            ↓
-       USER PRESSES DONE
-            ↓
-       RIVAL ADAPTS
-            ↓
-       NEXT CUE
-
-   Sensors can be added later as OPTIONAL systems.
-
-============================================================ */
+1. There is ONE session timer.
+2. There is ONE transition timer.
+3. Both are cleared at session end.
+4. nextCue() refuses to run unless running === true.
+5. respond() refuses to run unless running === true.
+6. finishSession() can only execute once.
+7. A session NEVER automatically restarts.
+=========================================================
+*/
 
 
-/* ============================================================
-   CONFIG
-============================================================ */
+/* ======================================================
+   DOM
+====================================================== */
 
-const CONFIG = {
+const $ = id => document.getElementById(id);
 
-  storageKey:"tChamberKickboxingV2",
 
-  densities:{
+/* ======================================================
+   GAME STATE
+====================================================== */
 
-    1:{
-      interval:4200
-    },
+const state = {
 
-    2:{
-      interval:3000
-    },
+  running: false,
 
-    3:{
-      interval:2100
-    },
+  ending: false,
 
-    5:{
-      interval:1250
-    }
+  mode: "practice",
 
-  },
+  rival: "pressure",
 
-  maxHistory:25
+  durationSeconds: 180,
+
+  remainingSeconds: 180,
+
+  density: 2,
+
+  startTime: 0,
+
+  cueNumber: 0,
+
+  completed: 0,
+
+  skipped: 0,
+
+  pressure: 15,
+
+  stamina: 100,
+
+  phase: "Observe",
+
+  currentCue: null,
+
+  sessionTimer: null,
+
+  transitionTimer: null,
+
+  history: []
 
 };
 
 
-/* ============================================================
+/* ======================================================
    RIVALS
-============================================================ */
+====================================================== */
 
 const RIVALS = {
 
-  pressure:{
+  pressure: {
 
-    name:"IRON PRESSURE",
+    name: "Iron Pressure",
 
-    aggression:90,
-    defense:40,
-    kickBias:30,
-    punchBias:85,
-    adaptation:55,
-    stamina:100,
+    type: "Constant forward pressure",
 
-    messages:[
-      "Walking you down.",
-      "Cutting off your escape.",
-      "Closing distance.",
-      "Increasing pressure.",
-      "Forcing you backward."
-    ]
+    aggression: 85,
 
-  },
+    defense: 45,
 
+    kickBias: 35,
 
-  counter:{
+    punchBias: 65,
 
-    name:"PHANTOM COUNTER",
+    adaptation: 60,
 
-    aggression:55,
-    defense:85,
-    kickBias:55,
-    punchBias:60,
-    adaptation:90,
-    stamina:100,
-
-    messages:[
-      "Waiting for your mistake.",
-      "Reading your rhythm.",
-      "Looking for the counter.",
-      "Giving you an opening.",
-      "Changing defensive timing."
-    ]
+    stamina: 90
 
   },
 
 
-  kicker:{
+  counter: {
 
-    name:"KICK HUNTER",
+    name: "Phantom Counter",
 
-    aggression:65,
-    defense:65,
-    kickBias:95,
-    punchBias:40,
-    adaptation:70,
-    stamina:100,
+    type: "Waits for openings",
 
-    messages:[
-      "Controlling range with kicks.",
-      "Attacking the legs.",
-      "Maintaining distance.",
-      "Changing angles.",
-      "Threatening the body."
-    ]
+    aggression: 45,
+
+    defense: 85,
+
+    kickBias: 35,
+
+    punchBias: 65,
+
+    adaptation: 90,
+
+    stamina: 85
 
   },
 
 
-  mirror:{
+  kick: {
 
-    name:"MIRROR",
+    name: "Kick Hunter",
 
-    aggression:70,
-    defense:70,
-    kickBias:70,
-    punchBias:70,
-    adaptation:100,
-    stamina:100,
+    type: "Heavy kick threat",
 
-    messages:[
-      "Studying your rhythm.",
-      "Adapting.",
-      "Changing the pattern.",
-      "Matching your pace.",
-      "Breaking your rhythm."
-    ]
+    aggression: 65,
+
+    defense: 55,
+
+    kickBias: 85,
+
+    punchBias: 35,
+
+    adaptation: 70,
+
+    stamina: 80
+
+  },
+
+
+  mirror: {
+
+    name: "Mirror",
+
+    type: "Balanced adaptive opponent",
+
+    aggression: 60,
+
+    defense: 60,
+
+    kickBias: 50,
+
+    punchBias: 50,
+
+    adaptation: 95,
+
+    stamina: 95
 
   }
 
 };
 
 
-/* ============================================================
-   CUE LIBRARY
-============================================================ */
+/* ======================================================
+   CUES
+====================================================== */
 
 const CUES = {
 
-  technical:[
+  stance: [
 
-    ["STANCE","CHECK STANCE","Establish your fighting stance and balance.","stance"],
+    ["GUARD",
+     "Hands high. Chin protected. Return to fighting stance."],
 
-    ["GUARD","GUARD","Raise your guard and establish your defensive position.","guard"],
+    ["RESET",
+     "Return to your base stance and establish balance."],
 
-    ["PUNCH","JAB","Throw a technically controlled lead jab.","jab"],
+    ["CHIN DOWN",
+     "Lower the chin slightly while keeping your eyes forward."],
 
-    ["PUNCH","CROSS","Throw a controlled rear straight.","cross"],
-
-    ["PUNCH","HOOK","Throw a controlled lead hook.","hook"],
-
-    ["KICK","TEEP","Perform a controlled front kick.","teep"],
-
-    ["KICK","LOW KICK","Perform a controlled low round kick.","lowkick"],
-
-    ["KICK","BODY KICK","Perform a controlled body kick.","bodykick"],
-
-    ["DEFENSE","SLIP LEFT","Slip left and recover your stance.","slipleft"],
-
-    ["DEFENSE","SLIP RIGHT","Slip right and recover your stance.","slipright"],
-
-    ["DEFENSE","CHECK KICK","Practice the checking motion.","check"],
-
-    ["FOOTWORK","STEP LEFT","Step left while maintaining your base.","left"],
-
-    ["FOOTWORK","STEP RIGHT","Step right while maintaining your base.","right"],
-
-    ["FOOTWORK","STEP BACK","Create distance while maintaining balance.","back"],
-
-    ["FOOTWORK","PIVOT LEFT","Pivot left and regain your stance.","pivotleft"],
-
-    ["FOOTWORK","PIVOT RIGHT","Pivot right and regain your stance.","pivotright"],
-
-    ["RESET","RESET","Return to your neutral fighting position.","reset"]
+    ["ELBOWS IN",
+     "Bring the elbows toward the body without collapsing posture."]
 
   ],
 
 
-  practice:[
+  footwork: [
 
-    ["COMBO","JAB → CROSS","Throw a controlled one-two.","combo"],
+    ["STEP LEFT",
+     "Take a controlled step left. Stay balanced."],
 
-    ["COMBO","JAB → CROSS → HOOK","Complete the three-punch combination.","combo"],
+    ["STEP RIGHT",
+     "Take a controlled step right. Stay balanced."],
 
-    ["COMBO","JAB → LOW KICK","Punch, then finish with the kick.","combo"],
+    ["STEP FORWARD",
+     "Advance one controlled step while maintaining stance."],
 
-    ["COMBO","CROSS → HOOK","Complete the combination under control.","combo"],
+    ["STEP BACK",
+     "Retreat one controlled step without crossing your feet."],
 
-    ["COMBO","JAB → BODY KICK","Set up the kick with the jab.","combo"],
+    ["PIVOT LEFT",
+     "Pivot left and re-establish your base."],
 
-    ["COMBO","HOOK → LOW KICK","Hook, then kick.","combo"],
+    ["PIVOT RIGHT",
+     "Pivot right and re-establish your base."],
 
-    ["COMBO","JAB → CROSS → BODY KICK","Complete the sequence.","combo"],
+    ["ANGLE LEFT",
+     "Move off the center line to your left."],
 
-    ["FOOTWORK","ANGLE LEFT","Move off the center line to your left.","left"],
-
-    ["FOOTWORK","ANGLE RIGHT","Move off the center line to your right.","right"],
-
-    ["DEFENSE","GUARD → RESET","Establish guard, then recover.","combo"],
-
-    ["DEFENSE","SLIP → CROSS","Defensive movement followed by a rear straight.","combo"]
-
-  ],
-
-
-  sparring:[
-
-    ["REACTION","JAB","Respond with the lead hand.","jab"],
-
-    ["REACTION","CROSS","Respond with the rear straight.","cross"],
-
-    ["REACTION","CHECK KICK","Defend the incoming kick.","check"],
-
-    ["REACTION","SLIP LEFT","Move off the line.","slipleft"],
-
-    ["REACTION","SLIP RIGHT","Move off the line.","slipright"],
-
-    ["REACTION","ANGLE LEFT","Exit to your left.","left"],
-
-    ["REACTION","ANGLE RIGHT","Exit to your right.","right"],
-
-    ["REACTION","TEEP","Create space with the front kick.","teep"],
-
-    ["REACTION","LOW KICK","Attack the available leg.","lowkick"],
-
-    ["REACTION","GUARD","Protect yourself and stabilize.","guard"],
-
-    ["REACTION","RESET","Return to your base.","reset"],
-
-    ["REACTION","COUNTER","Defend, then answer with a controlled strike.","combo"]
+    ["ANGLE RIGHT",
+     "Move off the center line to your right."]
 
   ],
 
 
-  fight:[
+  defense: [
 
-    ["FIGHT","JAB → CROSS","Fast controlled one-two.","combo"],
+    ["SLIP LEFT",
+     "Make a small controlled slip left. Keep your base."],
 
-    ["FIGHT","ANGLE LEFT","Get off the center line.","left"],
+    ["SLIP RIGHT",
+     "Make a small controlled slip right. Keep your base."],
 
-    ["FIGHT","LOW KICK","Attack the leg.","lowkick"],
+    ["DUCK",
+     "Lower your level under the imagined attack, then recover."],
 
-    ["FIGHT","GUARD","Protect yourself immediately.","guard"],
+    ["PULL BACK",
+     "Move the upper body away from range, then return."],
 
-    ["FIGHT","TEEP","Control the distance.","teep"],
+    ["HIGH BLOCK",
+     "Raise the guard and protect the head."],
 
-    ["FIGHT","CROSS → HOOK","Return fire with control.","combo"],
+    ["CHECK",
+     "Lift the lead leg and check an incoming low kick."],
 
-    ["FIGHT","SLIP RIGHT","Move defensively.","slipright"],
+    ["COVER",
+     "Tighten the guard and protect the head and body."]
 
-    ["FIGHT","BODY KICK","Attack the body.","bodykick"],
+  ],
 
-    ["FIGHT","PIVOT LEFT","Change the angle.","pivotleft"],
 
-    ["FIGHT","JAB → LOW KICK","Finish the combination.","combo"],
+  punches: [
 
-    ["FIGHT","CHECK KICK","Defend the kick.","check"],
+    ["JAB",
+     "Throw one clean jab and immediately return to guard."],
 
-    ["FIGHT","BURST","Perform a short explosive combination.","burst"],
+    ["CROSS",
+     "Throw one controlled rear straight and return to guard."],
 
-    ["FIGHT","RESET","Regain your stance and breathing.","reset"]
+    ["LEAD HOOK",
+     "Throw a controlled lead hook and return to stance."],
+
+    ["REAR HOOK",
+     "Throw a controlled rear hook and return to stance."],
+
+    ["LEAD UPPERCUT",
+     "Throw a controlled lead uppercut and reset."],
+
+    ["REAR UPPERCUT",
+     "Throw a controlled rear uppercut and reset."]
+
+  ],
+
+
+  kicks: [
+
+    ["LEAD ROUNDHOUSE",
+     "Throw a controlled lead roundhouse and recover."],
+
+    ["REAR ROUNDHOUSE",
+     "Throw a controlled rear roundhouse and recover."],
+
+    ["LEAD TEEP",
+     "Throw a controlled lead teep and recover."],
+
+    ["REAR TEEP",
+     "Throw a controlled rear teep and recover."],
+
+    ["LOW KICK",
+     "Throw a controlled low kick and recover your base."],
+
+    ["BODY KICK",
+     "Throw a controlled body kick and return to guard."]
+
+  ],
+
+
+  combinations: [
+
+    ["JAB → CROSS",
+     "Throw jab, cross. Return immediately to guard."],
+
+    ["JAB → CROSS → HOOK",
+     "Throw jab, cross, lead hook. Reset."],
+
+    ["JAB → LOW KICK",
+     "Throw jab, then controlled low kick. Recover."],
+
+    ["CROSS → HOOK",
+     "Throw rear cross, lead hook. Return to stance."],
+
+    ["JAB → BODY KICK",
+     "Throw jab followed by controlled body kick."],
+
+    ["JAB → CROSS → BODY KICK",
+     "Throw jab, cross, body kick. Recover to guard."],
+
+    ["HOOK → LOW KICK",
+     "Throw lead hook followed by controlled low kick."]
+
+  ],
+
+
+  fightIQ: [
+
+    ["CUT OFF RING",
+     "Take an angle and imagine preventing the rival from escaping."],
+
+    ["CREATE SPACE",
+     "Step away while maintaining guard and balance."],
+
+    ["COUNTER",
+     "Imagine an attack. Defend, then answer with one clean strike."],
+
+    ["PRESSURE",
+     "Advance behind your guard with controlled movement."],
+
+    ["FAINT",
+     "Give a small believable feint, then reset."],
+
+    ["ANGLE OUT",
+     "Exit the center line using controlled lateral footwork."]
 
   ]
 
 };
 
 
-/* ============================================================
-   STATE
-============================================================ */
+/* ======================================================
+   RANDOM
+====================================================== */
 
-const state = {
+function randomItem(array) {
 
-  screen:"home",
-
-  mode:"technical",
-
-  density:1,
-
-  duration:3,
-
-  rivalType:"pressure",
-
-  rival:null,
-
-  running:false,
-
-  paused:false,
-
-  startTime:null,
-
-  pauseStart:null,
-
-  pausedTime:0,
-
-  elapsed:0,
-
-  cueCount:0,
-
-  completed:0,
-
-  skipped:0,
-
-  pressure:0,
-
-  phase:1,
-
-  maxPhase:1,
-
-  currentCue:null,
-
-  lastCue:null,
-
-  timer:null,
-
-  cueTimer:null,
-
-  history:[]
-
-};
-
-
-/* ============================================================
-   DOM
-============================================================ */
-
-const $ = id => document.getElementById(id);
-
-const screens = {
-
-  home:$("home"),
-
-  training:$("training"),
-
-  pause:$("pauseScreen"),
-
-  results:$("results")
-
-};
-
-
-/* ============================================================
-   SCREEN
-============================================================ */
-
-function showScreen(name){
-
-  Object.values(screens).forEach(s=>{
-    s.classList.remove("active");
-  });
-
-  screens[name].classList.add("active");
-
-  state.screen=name;
+  return array[
+    Math.floor(Math.random() * array.length)
+  ];
 
 }
 
 
-/* ============================================================
-   OPTIONS
-============================================================ */
+/* ======================================================
+   CLAMP
+====================================================== */
 
-document.querySelectorAll("[data-mode]").forEach(button=>{
+function clamp(value, min, max) {
 
-  button.addEventListener("click",()=>{
+  return Math.max(
+    min,
+    Math.min(max, value)
+  );
 
-    document
-      .querySelectorAll("[data-mode]")
-      .forEach(b=>b.classList.remove("selected"));
-
-    button.classList.add("selected");
-
-    state.mode=button.dataset.mode;
-
-  });
-
-});
+}
 
 
-document.querySelectorAll("[data-density]").forEach(button=>{
+/* ======================================================
+   MODE WEIGHTS
+====================================================== */
 
-  button.addEventListener("click",()=>{
+function getModeWeights() {
 
-    document
-      .querySelectorAll("[data-density]")
-      .forEach(b=>b.classList.remove("selected"));
+  if (state.mode === "technical") {
 
-    button.classList.add("selected");
+    return {
+      stance: 25,
+      footwork: 30,
+      defense: 25,
+      punches: 10,
+      kicks: 5,
+      combinations: 3,
+      fightIQ: 2
+    };
 
-    state.density=Number(button.dataset.density);
-
-  });
-
-});
-
-
-document.querySelectorAll("[data-duration]").forEach(button=>{
-
-  button.addEventListener("click",()=>{
-
-    document
-      .querySelectorAll("[data-duration]")
-      .forEach(b=>b.classList.remove("selected"));
-
-    button.classList.add("selected");
-
-    state.duration=Number(button.dataset.duration);
-
-  });
-
-});
+  }
 
 
-document.querySelectorAll("[data-rival]").forEach(button=>{
+  if (state.mode === "sparring") {
 
-  button.addEventListener("click",()=>{
+    return {
+      stance: 8,
+      footwork: 18,
+      defense: 20,
+      punches: 17,
+      kicks: 15,
+      combinations: 12,
+      fightIQ: 10
+    };
 
-    document
-      .querySelectorAll("[data-rival]")
-      .forEach(b=>b.classList.remove("selected"));
-
-    button.classList.add("selected");
-
-    state.rivalType=button.dataset.rival;
-
-  });
-
-});
+  }
 
 
-/* ============================================================
-   START
-============================================================ */
+  if (state.mode === "fight") {
 
-$("start").addEventListener("click",startSession);
+    return {
+      stance: 5,
+      footwork: 15,
+      defense: 20,
+      punches: 20,
+      kicks: 15,
+      combinations: 15,
+      fightIQ: 10
+    };
+
+  }
 
 
-function startSession(){
-
-  clearTimers();
-
-  state.rival={
-    ...RIVALS[state.rivalType]
+  return {
+    stance: 12,
+    footwork: 20,
+    defense: 20,
+    punches: 18,
+    kicks: 13,
+    combinations: 10,
+    fightIQ: 7
   };
 
-  state.running=true;
-  state.paused=false;
+}
 
-  state.startTime=Date.now();
-  state.pauseStart=null;
-  state.pausedTime=0;
 
-  state.elapsed=0;
+/* ======================================================
+   CHOOSE CATEGORY
+====================================================== */
 
-  state.cueCount=0;
-  state.completed=0;
-  state.skipped=0;
+function chooseCategory() {
 
-  state.pressure=0;
+  const weights =
+    getModeWeights();
 
-  state.phase=1;
-  state.maxPhase=1;
+  const rival =
+    RIVALS[state.rival];
 
-  state.currentCue=null;
-  state.lastCue=null;
 
-  $("rivalName").textContent=
-    state.rival.name;
+  weights.punches +=
+    rival.punchBias * 0.15;
 
-  $("pressure").textContent="";
+  weights.kicks +=
+    rival.kickBias * 0.15;
 
-  $("phase").textContent="1";
 
-  showScreen("training");
+  if (state.pressure > 70) {
 
-  updateTraining();
+    weights.defense += 12;
+
+    weights.footwork += 8;
+
+  }
+
+
+  if (state.phase === "Boss") {
+
+    weights.combinations += 10;
+
+    weights.fightIQ += 10;
+
+  }
+
+
+  const entries =
+    Object.entries(weights);
+
+  let total = 0;
+
+  for (const [, weight] of entries) {
+
+    total += Math.max(0, weight);
+
+  }
+
+
+  let roll =
+    Math.random() * total;
+
+
+  for (const [category, weight] of entries) {
+
+    roll -= Math.max(0, weight);
+
+    if (roll <= 0) {
+
+      return category;
+
+    }
+
+  }
+
+
+  return "stance";
+
+}
+
+
+/* ======================================================
+   GENERATE CUE
+====================================================== */
+
+function generateCue() {
+
+  const category =
+    chooseCategory();
+
+  const library =
+    CUES[category];
+
+  let selected =
+    randomItem(library);
+
+  let attempts = 0;
+
+
+  while (
+    state.currentCue &&
+    selected[0] === state.currentCue.name &&
+    attempts < 10
+  ) {
+
+    selected =
+      randomItem(library);
+
+    attempts++;
+
+  }
+
+
+  return {
+
+    name: selected[0],
+
+    instruction: selected[1],
+
+    category: category
+
+  };
+
+}
+
+
+/* ======================================================
+   RIVAL ACTION
+====================================================== */
+
+function generateRivalAction() {
+
+  const rival =
+    RIVALS[state.rival];
+
+  const roll =
+    Math.random() * 100;
+
+
+  if (state.pressure > 80) {
+
+    if (roll < 45)
+      return "ADVANCES HARD";
+
+    if (roll < 70)
+      return "THROWS JAB";
+
+    if (roll < 85)
+      return "THREATENS KICK";
+
+    return "FEINTS";
+
+  }
+
+
+  if (state.pressure > 50) {
+
+    if (
+      roll <
+      rival.aggression * 0.5
+    ) {
+
+      return "ADVANCES";
+
+    }
+
+    if (roll < 65) {
+
+      return "TESTS RANGE";
+
+    }
+
+    return "RESET";
+
+  }
+
+
+  if (roll < rival.kickBias) {
+
+    return "THREATENS KICK";
+
+  }
+
+
+  if (
+    roll <
+    rival.kickBias +
+    rival.punchBias
+  ) {
+
+    return "THREATENS PUNCH";
+
+  }
+
+
+  return "WATCHES";
+
+}
+
+
+/* ======================================================
+   PHASE
+====================================================== */
+
+function updatePhase() {
+
+  const progress =
+    state.elapsedProgress || 0;
+
+
+  if (progress < .25) {
+
+    state.phase = "Observe";
+
+  } else if (progress < .55) {
+
+    state.phase = "Pressure";
+
+  } else if (progress < .80) {
+
+    state.phase = "Counter";
+
+  } else {
+
+    state.phase = "Boss";
+
+  }
+
+}
+
+
+/* ======================================================
+   RIVAL RESPONSE
+====================================================== */
+
+function updateRivalAfterResponse(result) {
+
+  const rival =
+    RIVALS[state.rival];
+
+
+  if (result === "DONE") {
+
+    state.pressure -=
+      4 +
+      Math.round(
+        rival.adaptation / 40
+      );
+
+    state.stamina -=
+      1 +
+      Math.round(
+        rival.aggression / 70
+      );
+
+  }
+
+
+  if (result === "SKIP") {
+
+    state.pressure +=
+      5 +
+      Math.round(
+        rival.aggression / 30
+      );
+
+  }
+
+
+  state.pressure +=
+    Math.round(
+      rival.aggression / 35
+    );
+
+
+  state.pressure =
+    clamp(
+      state.pressure,
+      0,
+      100
+    );
+
+
+  state.stamina =
+    clamp(
+      state.stamina,
+      10,
+      100
+    );
+
+}
+
+
+/* ======================================================
+   TIMER DISPLAY
+====================================================== */
+
+function formatTime(totalSeconds) {
+
+  const seconds =
+    Math.max(
+      0,
+      Math.ceil(totalSeconds)
+    );
+
+
+  const minutes =
+    Math.floor(seconds / 60);
+
+  const remainder =
+    seconds % 60;
+
+
+  return (
+    String(minutes).padStart(2, "0") +
+    ":" +
+    String(remainder).padStart(2, "0")
+  );
+
+}
+
+
+/* ======================================================
+   UPDATE TIMER
+====================================================== */
+
+function updateTimer() {
+
+  /*
+    HARD GUARD:
+    Timer does absolutely nothing
+    after the session stops.
+  */
+
+  if (!state.running) {
+
+    return;
+
+  }
+
+
+  const now =
+    Date.now();
+
+
+  const elapsed =
+    (now - state.startTime) / 1000;
+
+
+  state.elapsed =
+    Math.min(
+      elapsed,
+      state.durationSeconds
+    );
+
+
+  state.remainingSeconds =
+    Math.max(
+      0,
+      state.durationSeconds -
+      elapsed
+    );
+
+
+  state.elapsedProgress =
+    state.durationSeconds > 0
+      ? state.elapsed /
+        state.durationSeconds
+      : 1;
+
+
+  updatePhase();
+
+
+  $("timer").textContent =
+    formatTime(
+      state.remainingSeconds
+    );
+
+
+  $("phase").textContent =
+    state.phase.toUpperCase();
+
+
+  /*
+    Warning state.
+  */
+
+  if (
+    state.remainingSeconds <= 10 &&
+    state.remainingSeconds > 0
+  ) {
+
+    $("timer").classList.add(
+      "warning"
+    );
+
+  } else {
+
+    $("timer").classList.remove(
+      "warning"
+    );
+
+  }
+
+
+  /*
+    ======================================================
+    THE HARD STOP
+    ======================================================
+
+    At zero, do NOT schedule anything.
+    Do NOT generate another cue.
+    Do NOT wait for another button.
+    End immediately.
+    ======================================================
+  */
+
+  if (
+    elapsed >=
+    state.durationSeconds
+  ) {
+
+    state.remainingSeconds = 0;
+
+    $("timer").textContent =
+      "00:00";
+
+    finishSession("TIME");
+
+  }
+
+}
+
+
+/* ======================================================
+   METERS
+====================================================== */
+
+function updateMeters() {
+
+  $("pressureText").textContent =
+    Math.round(
+      state.pressure
+    );
+
+  $("staminaText").textContent =
+    Math.round(
+      state.stamina
+    );
+
+  $("pressureBar").style.width =
+    state.pressure + "%";
+
+  $("staminaBar").style.width =
+    state.stamina + "%";
+
+}
+
+
+/* ======================================================
+   RIVAL DISPLAY
+====================================================== */
+
+function updateRivalDisplay() {
+
+  const rival =
+    RIVALS[state.rival];
+
+
+  $("rivalName").textContent =
+    rival.name;
+
+  $("rivalType").textContent =
+    rival.type;
+
+
+  $("rivalStats").innerHTML =
+    "AGG " + rival.aggression +
+    "<br>DEF " + rival.defense +
+    "<br>KICK " + rival.kickBias +
+    "<br>ADAPT " + rival.adaptation;
+
+}
+
+
+/* ======================================================
+   CUE DISPLAY
+====================================================== */
+
+function displayCue(cue) {
+
+  /*
+    HARD GUARD:
+    Never display a new cue after
+    the session has stopped.
+  */
+
+  if (!state.running) {
+
+    return;
+
+  }
+
+
+  state.currentCue =
+    cue;
+
+
+  $("cueCategory").textContent =
+    cue.category
+      .replace("fightIQ", "FIGHT IQ")
+      .toUpperCase();
+
+
+  $("cue").textContent =
+    cue.name;
+
+
+  $("instruction").textContent =
+    cue.instruction;
+
+
+  $("count").textContent =
+    "Cue " +
+    state.cueNumber;
+
+}
+
+
+/* ======================================================
+   NEXT CUE
+====================================================== */
+
+function nextCue() {
+
+  /*
+    CRITICAL HARD GUARD.
+  */
+
+  if (!state.running) {
+
+    return;
+
+  }
+
+
+  /*
+    If the timer is already zero,
+    never create another cue.
+  */
+
+  if (
+    state.remainingSeconds <= 0
+  ) {
+
+    return;
+
+  }
+
+
+  state.cueNumber++;
+
+
+  updatePhase();
+
+
+  const rivalAction =
+    generateRivalAction();
+
+
+  $("rivalAction").textContent =
+    "Rival: " +
+    rivalAction;
+
+
+  const cue =
+    generateCue();
+
+
+  displayCue(cue);
+
+  updateMeters();
+
+}
+
+
+/* ======================================================
+   TRANSITION DELAY
+====================================================== */
+
+function getTransitionDelay() {
+
+  switch (
+    Number(state.density)
+  ) {
+
+    case 5:
+      return 500;
+
+    case 3:
+      return 900;
+
+    case 2:
+      return 1400;
+
+    default:
+      return 2000;
+
+  }
+
+}
+
+
+/* ======================================================
+   RESPOND
+====================================================== */
+
+function respond(result) {
+
+  /*
+    HARD GUARD #1
+  */
+
+  if (!state.running) {
+
+    return;
+
+  }
+
+
+  /*
+    HARD GUARD #2
+  */
+
+  if (
+    state.remainingSeconds <= 0
+  ) {
+
+    return;
+
+  }
+
+
+  /*
+    HARD GUARD #3
+  */
+
+  if (!state.currentCue) {
+
+    return;
+
+  }
+
+
+  const cue =
+    state.currentCue;
+
+
+  if (result === "DONE") {
+
+    state.completed++;
+
+  } else {
+
+    state.skipped++;
+
+  }
+
+
+  const rivalAction =
+    $("rivalAction").textContent;
+
+
+  updateRivalAfterResponse(
+    result
+  );
+
+
+  addLog(
+    cue,
+    result,
+    rivalAction
+  );
+
+
+  /*
+    Clear the active cue BEFORE
+    scheduling the next one.
+  */
+
+  state.currentCue =
+    null;
+
+
+  $("cueCategory").textContent =
+    "NEXT";
+
+  $("cue").textContent =
+    "...";
+
+  $("instruction").textContent =
+    "Prepare.";
+
+
+  updateMeters();
+
+
+  clearTimeout(
+    state.transitionTimer
+  );
+
+
+  /*
+    ======================================================
+    SECOND HARD STOP
+    ======================================================
+
+    The delayed callback checks running AGAIN.
+    Therefore a timer expiring during this delay
+    cannot create a new cue.
+    ======================================================
+  */
+
+  state.transitionTimer =
+    setTimeout(() => {
+
+      if (!state.running) {
+
+        return;
+
+      }
+
+
+      if (
+        state.remainingSeconds <= 0
+      ) {
+
+        return;
+
+      }
+
+
+      nextCue();
+
+    }, getTransitionDelay());
+
+}
+
+
+/* ======================================================
+   LOG
+====================================================== */
+
+function addLog(
+  cue,
+  result,
+  rivalAction
+) {
+
+  state.history.unshift({
+
+    cue: cue.name,
+
+    result,
+
+    rivalAction
+
+  });
+
+
+  if (
+    state.history.length > 30
+  ) {
+
+    state.history.pop();
+
+  }
+
+
+  renderLog();
+
+}
+
+
+function renderLog() {
+
+  const log =
+    $("log");
+
+
+  if (!state.history.length) {
+
+    log.innerHTML =
+      '<div style="color:#596376;font-size:10px">' +
+      'No actions yet.' +
+      '</div>';
+
+    return;
+
+  }
+
+
+  log.innerHTML =
+    state.history.map(item => {
+
+      return `
+        <div class="log-row">
+          <span>${escapeHTML(item.cue)}</span>
+          <span class="log-result">
+            ${escapeHTML(item.result)}
+          </span>
+        </div>
+      `;
+
+    }).join("");
+
+}
+
+
+/* ======================================================
+   ESCAPE
+====================================================== */
+
+function escapeHTML(value) {
+
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+
+}
+
+
+/* ======================================================
+   START SESSION
+====================================================== */
+
+function startSession() {
+
+  /*
+    Prevent duplicate starts.
+  */
+
+  if (state.running) {
+
+    return;
+
+  }
+
+
+  /*
+    Clear ALL old timers.
+  */
+
+  clearInterval(
+    state.sessionTimer
+  );
+
+  clearTimeout(
+    state.transitionTimer
+  );
+
+
+  /*
+    Read settings.
+  */
+
+  state.mode =
+    $("mode").value;
+
+  state.rival =
+    $("rival").value;
+
+  state.durationSeconds =
+    Number(
+      $("duration").value
+    ) * 60;
+
+  state.density =
+    Number(
+      $("density").value
+    );
+
+
+  /*
+    Reset session.
+  */
+
+  state.running = true;
+
+  state.ending = false;
+
+  state.startTime =
+    Date.now();
+
+  state.remainingSeconds =
+    state.durationSeconds;
+
+  state.cueNumber = 0;
+
+  state.completed = 0;
+
+  state.skipped = 0;
+
+  state.pressure = 15;
+
+  state.stamina =
+    RIVALS[state.rival].stamina;
+
+  state.phase = "Observe";
+
+  state.currentCue = null;
+
+  state.history = [];
+
+
+  /*
+    UI state.
+  */
+
+  $("status").textContent =
+    "LIVE";
+
+  $("setupPanel").classList.add(
+    "hidden"
+  );
+
+  $("results").classList.remove(
+    "show"
+  );
+
+
+  $("doneBtn").disabled = false;
+
+  $("skipBtn").disabled = false;
+
+  $("stopBtn").disabled = false;
+
+
+  $("timer").classList.remove(
+    "warning"
+  );
+
+
+  $("log").innerHTML =
+    '<div style="color:#596376;font-size:10px">' +
+    'Session started.' +
+    '</div>';
+
+
+  updateRivalDisplay();
+
+  updateMeters();
+
+
+  $("timer").textContent =
+    formatTime(
+      state.durationSeconds
+    );
+
+
+  /*
+    ======================================================
+    START THE SINGLE SESSION CLOCK
+    ======================================================
+  */
+
+  state.sessionTimer =
+    setInterval(
+      updateTimer,
+      100
+    );
+
+
+  /*
+    First cue happens immediately.
+  */
 
   nextCue();
 
-  state.timer=setInterval(updateClock,100);
+}
+
+
+/* ======================================================
+   FINISH SESSION
+====================================================== */
+
+function finishSession(reason) {
+
+  /*
+    HARD GUARD:
+    finishSession can only actually finish
+    a running session once.
+  */
+
+  if (
+    !state.running ||
+    state.ending
+  ) {
+
+    return;
+
+  }
+
+
+  state.ending = true;
+
+
+  /*
+    ======================================================
+    STOP EVERYTHING FIRST
+    ======================================================
+  */
+
+  state.running = false;
+
+
+  clearInterval(
+    state.sessionTimer
+  );
+
+
+  clearTimeout(
+    state.transitionTimer
+  );
+
+
+  state.sessionTimer = null;
+
+  state.transitionTimer = null;
+
+  state.currentCue = null;
+
+
+  /*
+    Force timer to zero only for
+    actual time expiration.
+  */
+
+  if (reason === "TIME") {
+
+    state.remainingSeconds = 0;
+
+    $("timer").textContent =
+      "00:00";
+
+  }
+
+
+  $("timer").classList.remove(
+    "warning"
+  );
+
+
+  /*
+    Disable gameplay.
+  */
+
+  $("doneBtn").disabled = true;
+
+  $("skipBtn").disabled = true;
+
+  $("stopBtn").disabled = true;
+
+
+  /*
+    Final screen.
+  */
+
+  $("status").textContent =
+    reason === "TIME"
+      ? "TIME"
+      : "ENDED";
+
+
+  $("phase").textContent =
+    "CHAMBER COMPLETE";
+
+
+  $("rivalAction").textContent =
+    reason === "TIME"
+      ? "Time limit reached."
+      : "Session ended manually.";
+
+
+  $("cueCategory").textContent =
+    "CHAMBER";
+
+
+  $("cue").textContent =
+    reason === "TIME"
+      ? "00:00"
+      : "ENDED";
+
+
+  $("instruction").textContent =
+    "No more cues will be generated.";
+
+
+  $("count").textContent =
+    "Final cue count: " +
+    state.cueNumber;
+
+
+  $("resultCues").textContent =
+    state.cueNumber;
+
+  $("resultDone").textContent =
+    state.completed;
+
+  $("resultSkipped").textContent =
+    state.skipped;
+
+
+  $("resultMessage").textContent =
+    reason === "TIME"
+      ? "TIME COMPLETE"
+      : "SESSION ENDED";
+
+
+  $("results").classList.add(
+    "show"
+  );
+
+
+  saveSession();
 
 }
 
 
-/* ============================================================
-   NEXT CUE
-============================================================ */
+/* ======================================================
+   MANUAL END
+====================================================== */
 
-function nextCue(){
+function stopSession() {
 
-  if(!state.running || state.paused){
-    return;
-  }
-
-  if(sessionFinished()){
-
-    finishSession();
+  if (!state.running) {
 
     return;
 
   }
 
-  state.currentCue=
-    chooseCue();
 
-  state.lastCue=
-    state.currentCue;
-
-  state.cueCount++;
-
-  renderCue();
-
-  updateRival();
+  finishSession(
+    "MANUAL"
+  );
 
 }
 
 
-/* ============================================================
-   CHOOSE CUE
-============================================================ */
+/* ======================================================
+   RESET
+====================================================== */
 
-function chooseCue(){
+function resetToSetup() {
 
-  let pool=
-    CUES[state.mode] ||
-    CUES.technical;
+  clearInterval(
+    state.sessionTimer
+  );
 
-  let available=
-    pool.filter(cue=>
-      !state.lastCue ||
-      cue[1]!==state.lastCue[1]
+  clearTimeout(
+    state.transitionTimer
+  );
+
+
+  state.sessionTimer = null;
+
+  state.transitionTimer = null;
+
+  state.running = false;
+
+  state.ending = false;
+
+  state.currentCue = null;
+
+
+  $("status").textContent =
+    "READY";
+
+
+  $("setupPanel").classList.remove(
+    "hidden"
+  );
+
+
+  $("results").classList.remove(
+    "show"
+  );
+
+
+  $("timer").classList.remove(
+    "warning"
+  );
+
+
+  $("timer").textContent =
+    formatTime(
+      Number(
+        $("duration").value
+      ) * 60
     );
 
-  if(!available.length){
-    available=pool;
-  }
 
-  /*
-    AI modifies cue probabilities.
+  $("phase").textContent =
+    "CHAMBER READY";
 
-    More aggressive rivals produce more defensive/
-    movement demands.
 
-    Kick-focused rivals produce more kicking cues.
-  */
+  $("rivalAction").textContent =
+    "Choose your settings and start.";
 
-  let weighted=[];
 
-  available.forEach(cue=>{
+  $("cueCategory").textContent =
+    "WAITING";
 
-    let weight=1;
 
-    const category=cue[0];
-    const name=cue[1];
+  $("cue").textContent =
+    "READY";
 
-    if(
-      category==="DEFENSE" &&
-      state.rival.aggression>75
-    ){
-      weight+=3;
-    }
 
-    if(
-      category==="FOOTWORK" &&
-      state.rival.aggression>75
-    ){
-      weight+=2;
-    }
+  $("instruction").textContent =
+    "The Chamber will tell you what to do.";
 
-    if(
-      category==="KICK" &&
-      state.rival.kickBias>80
-    ){
-      weight+=4;
-    }
 
-    if(
-      category==="PUNCH" &&
-      state.rival.punchBias>80
-    ){
-      weight+=3;
-    }
+  $("count").textContent =
+    "Cue 0";
 
-    if(
-      category==="REACTION" &&
-      state.phase>=3
-    ){
-      weight+=3;
-    }
 
-    if(
-      category==="FIGHT" &&
-      state.phase>=4
-    ){
-      weight+=4;
-    }
+  $("doneBtn").disabled = true;
 
-    for(let i=0;i<weight;i++){
-      weighted.push(cue);
-    }
+  $("skipBtn").disabled = true;
 
-  });
+  $("stopBtn").disabled = true;
 
-  return [...weighted][
-    Math.floor(Math.random()*weighted.length)
-  ];
+
+  state.pressure = 15;
+
+  state.stamina =
+    RIVALS[
+      $("rival").value
+    ].stamina;
+
+
+  updateMeters();
+
+  renderLog();
 
 }
 
 
-/* ============================================================
-   RIVAL ADAPTATION
-============================================================ */
+/* ======================================================
+   STORAGE
+====================================================== */
 
-function updateRival(){
+function saveSession() {
 
-  if(!state.rival){
-    return;
-  }
+  try {
 
-  const progress=
-    getProgress();
-
-  /*
-    Four fight phases.
-  */
-
-  if(progress<.25){
-
-    state.phase=1;
-
-  }else if(progress<.60){
-
-    state.phase=2;
-
-  }else if(progress<.85){
-
-    state.phase=3;
-
-  }else{
-
-    state.phase=4;
-
-  }
-
-  state.maxPhase=
-    Math.max(
-      state.maxPhase,
-      state.phase
-    );
+    const old =
+      JSON.parse(
+        localStorage.getItem(
+          "tChamberSessions"
+        ) || "[]"
+      );
 
 
-  /*
-    Rival pressure grows with time,
-    but is influenced by rival personality.
-  */
+    old.unshift({
 
-  let base=
-    state.rival.aggression *
-    progress;
+      date:
+        new Date().toISOString(),
 
-  let adaptation=
-    state.rival.adaptation *
-    (state.cueCount/Math.max(1,state.cueCount+5));
+      mode:
+        state.mode,
 
-  let pressure=
-    Math.round(
-      Math.min(
-        100,
-        base*.65+
-        adaptation*.35+
-        state.completed*.15
+      rival:
+        state.rival,
+
+      duration:
+        state.durationSeconds,
+
+      density:
+        state.density,
+
+      cues:
+        state.cueNumber,
+
+      completed:
+        state.completed,
+
+      skipped:
+        state.skipped,
+
+      endReason:
+        state.ending
+
+    });
+
+
+    localStorage.setItem(
+      "tChamberSessions",
+      JSON.stringify(
+        old.slice(0, 50)
       )
     );
 
-  state.pressure=pressure;
-
-
-  /*
-    Stamina decreases gradually.
-    This is simulated rival state,
-    not a measurement of the user.
-  */
-
-  state.rival.stamina=
-    Math.max(
-      15,
-      100-
-      progress*45+
-      state.completed*.02
-    );
-
-
-  const phaseNames=[
-    "",
-    "OBSERVE",
-    "PRESSURE",
-    "COUNTER",
-    "BOSS MODE"
-  ];
-
-  const messages=state.rival.messages;
-
-  $("phaseName").textContent=
-    phaseNames[state.phase];
-
-  $("rivalMessage").textContent=
-    random(messages);
-
-  $("pressureNumber").textContent=
-    state.pressure;
-
-  $("pressureMeter").style.width=
-    state.pressure+"%";
-
-  $("staminaNumber").textContent=
-    Math.round(state.rival.stamina);
-
-  $("staminaMeter").style.width=
-    state.rival.stamina+"%";
-
-  $("phase").textContent=
-    state.phase;
-
-}
-
-
-/* ============================================================
-   CUE RENDER
-============================================================ */
-
-function renderCue(){
-
-  if(!state.currentCue){
-    return;
-  }
-
-  const cue=state.currentCue;
-
-  $("cueCategory").textContent=
-    cue[0];
-
-  $("cue").textContent=
-    cue[1];
-
-  $("cueDetail").textContent=
-    cue[2];
-
-  $("phaseMessage").textContent=
-    "PERFORM → THEN PRESS DONE";
-
-  updateTraining();
-
-}
-
-
-/* ============================================================
-   DONE
-============================================================ */
-
-$("done").addEventListener("click",completeCue);
-
-
-function completeCue(){
-
-  if(
-    !state.running ||
-    state.paused ||
-    !state.currentCue
-  ){
-    return;
-  }
-
-  state.completed++;
-
-  $("phaseMessage").textContent=
-    "COMPLETED";
-
-  updateRival();
-
-  queueNextCue();
-
-}
-
-
-/* ============================================================
-   SKIP
-============================================================ */
-
-$("skip").addEventListener("click",skipCue);
-
-
-function skipCue(){
-
-  if(
-    !state.running ||
-    state.paused ||
-    !state.currentCue
-  ){
-    return;
-  }
-
-  state.skipped++;
-
-  /*
-    Skipping increases virtual rival pressure.
-    It does NOT mean the system detected failure.
-  */
-
-  state.pressure=
-    Math.min(
-      100,
-      state.pressure+3
-    );
-
-  $("phaseMessage").textContent=
-    "SKIPPED";
-
-  queueNextCue();
-
-}
-
-
-/* ============================================================
-   QUEUE NEXT
-============================================================ */
-
-function queueNextCue(){
-
-  clearTimeout(state.cueTimer);
-
-  const interval=
-    CONFIG.densities[state.density].interval;
-
-  /*
-    Small transition window.
-  */
-
-  const delay=
-    Math.max(
-      250,
-      interval*.12
-    );
-
-  state.cueTimer=
-    setTimeout(
-      nextCue,
-      delay
-    );
-
-}
-
-
-/* ============================================================
-   CLOCK
-============================================================ */
-
-function updateClock(){
-
-  if(
-    !state.running ||
-    state.paused
-  ){
-    return;
-  }
-
-  state.elapsed=
-    getElapsed();
-
-  const total=
-    state.duration*60*1000;
-
-  const remaining=
-    Math.max(
-      0,
-      total-state.elapsed
-    );
-
-  $("time").textContent=
-    formatTime(remaining);
-
-  $("progressBar").style.width=
-    Math.min(
-      100,
-      state.elapsed/total*100
-    )+"%";
-
-  if(remaining<=0){
-
-    finishSession();
+  } catch (error) {
+
+    /*
+      LocalStorage failure should never
+      break the actual training engine.
+    */
 
   }
 
 }
 
 
-/* ============================================================
-   ELAPSED
-============================================================ */
+/* ======================================================
+   BUTTONS
+====================================================== */
 
-function getElapsed(){
-
-  if(!state.startTime){
-    return 0;
-  }
-
-  const now=
-    state.paused
-      ? state.pauseStart
-      : Date.now();
-
-  return Math.max(
-    0,
-    now-
-    state.startTime-
-    state.pausedTime
+$("startBtn")
+  .addEventListener(
+    "click",
+    startSession
   );
 
-}
 
-
-function sessionFinished(){
-
-  return getElapsed() >=
-    state.duration*60*1000;
-
-}
-
-
-/* ============================================================
-   FORMAT
-============================================================ */
-
-function formatTime(ms){
-
-  const seconds=
-    Math.max(
-      0,
-      Math.ceil(ms/1000)
-    );
-
-  const min=
-    Math.floor(seconds/60);
-
-  const sec=
-    seconds%60;
-
-  return(
-    String(min).padStart(2,"0")+
-    ":"+
-    String(sec).padStart(2,"0")
+$("doneBtn")
+  .addEventListener(
+    "click",
+    () => respond("DONE")
   );
 
-}
 
-
-/* ============================================================
-   PROGRESS
-============================================================ */
-
-function getProgress(){
-
-  const total=
-    state.duration*60*1000;
-
-  return Math.min(
-    1,
-    getElapsed()/total
+$("skipBtn")
+  .addEventListener(
+    "click",
+    () => respond("SKIP")
   );
 
-}
+
+$("stopBtn")
+  .addEventListener(
+    "click",
+    stopSession
+  );
 
 
-/* ============================================================
-   TRAINING UI
-============================================================ */
-
-function updateTraining(){
-
-  $("cueCount").textContent=
-    state.cueCount;
-
-  $("doneCount").textContent=
-    state.completed;
-
-}
+$("againBtn")
+  .addEventListener(
+    "click",
+    resetToSetup
+  );
 
 
-/* ============================================================
-   PAUSE
-============================================================ */
+/* ======================================================
+   RIVAL PREVIEW
+====================================================== */
 
-$("pause").addEventListener("click",pauseSession);
+$("rival")
+  .addEventListener(
+    "change",
+    () => {
 
+      if (!state.running) {
 
-function pauseSession(){
+        updateRivalDisplay();
 
-  if(
-    !state.running ||
-    state.paused
-  ){
-    return;
-  }
+        state.stamina =
+          RIVALS[
+            $("rival").value
+          ].stamina;
 
-  state.paused=true;
+        updateMeters();
 
-  state.pauseStart=Date.now();
-
-  clearTimeout(state.cueTimer);
-
-  showScreen("pause");
-
-}
-
-
-/* ============================================================
-   RESUME
-============================================================ */
-
-$("resume").addEventListener("click",resumeSession);
-
-
-function resumeSession(){
-
-  if(
-    !state.running ||
-    !state.paused
-  ){
-    return;
-  }
-
-  state.pausedTime+=
-    Date.now()-
-    state.pauseStart;
-
-  state.pauseStart=null;
-
-  state.paused=false;
-
-  showScreen("training");
-
-  renderCue();
-
-  updateRival();
-
-}
-
-
-/* ============================================================
-   END
-============================================================ */
-
-$("end").addEventListener(
-  "click",
-  finishSession
-);
-
-
-$("pauseEnd").addEventListener(
-  "click",
-  finishSession
-);
-
-
-/* ============================================================
-   FINISH
-============================================================ */
-
-function finishSession(){
-
-  if(!state.running){
-    return;
-  }
-
-  state.elapsed=
-    getElapsed();
-
-  state.running=false;
-  state.paused=false;
-
-  clearTimers();
-
-  saveRecord();
-
-  renderResults();
-
-  showScreen("results");
-
-}
-
-
-/* ============================================================
-   LOCAL CAMPAIGN
-============================================================ */
-
-function loadData(){
-
-  try{
-
-    const raw=
-      localStorage.getItem(
-        CONFIG.storageKey
-      );
-
-    if(!raw){
-
-      state.history=[];
-
-      return;
+      }
 
     }
+  );
 
-    const parsed=
-      JSON.parse(raw);
 
-    state.history=
-      Array.isArray(parsed)
-        ? parsed
-        : [];
+/* ======================================================
+   KEYBOARD TEST CONTROL
+======================================================
 
-  }catch(error){
+Space / Enter = DONE.
 
-    state.history=[];
-
-  }
-
-}
-
-
-function saveRecord(){
-
-  const record={
-
-    date:
-      new Date().toISOString(),
-
-    mode:
-      state.mode,
-
-    density:
-      state.density,
-
-    duration:
-      state.duration,
-
-    rival:
-      state.rivalType,
-
-    maxPhase:
-      state.maxPhase,
-
-    cues:
-      state.cueCount,
-
-    completed:
-      state.completed,
-
-    skipped:
-      state.skipped,
-
-    pressure:
-      state.pressure
-
-  };
-
-  state.history.unshift(record);
-
-  state.history=
-    state.history.slice(
-      0,
-      CONFIG.maxHistory
-    );
-
-  try{
-
-    localStorage.setItem(
-      CONFIG.storageKey,
-      JSON.stringify(state.history)
-    );
-
-  }catch(error){
-
-    console.warn(
-      "Local save unavailable.",
-      error
-    );
-
-  }
-
-}
-
-
-/* ============================================================
-   RESULTS
-============================================================ */
-
-function renderResults(){
-
-  $("resultRival").textContent=
-    state.rival.name;
-
-  $("resultPhase").textContent=
-    state.maxPhase;
-
-  $("resultCues").textContent=
-    state.cueCount;
-
-  $("resultDone").textContent=
-    state.completed;
-
-  $("resultSkipped").textContent=
-    state.skipped;
-
-  $("resultPressure").textContent=
-    state.pressure;
-
-  const bossReached=
-    state.maxPhase>=4;
-
-  $("resultMessage").textContent=
-    bossReached
-      ? "Boss phase reached. The Chamber increased pressure through the final phase."
-      : "Chamber block complete.";
-
-  renderCareer();
-
-  renderHistory();
-
-}
-
-
-/* ============================================================
-   CAREER
-============================================================ */
-
-function renderCareer(){
-
-  const sessions=
-    state.history.length;
-
-  const rivals=
-    new Set(
-      state.history.map(x=>x.rival)
-    ).size;
-
-  const bosses=
-    state.history.filter(
-      x=>x.maxPhase>=4
-    ).length;
-
-  const cues=
-    state.history.reduce(
-      (sum,x)=>sum+(x.cues||0),
-      0
-    );
-
-  $("careerSessions").textContent=
-    sessions;
-
-  $("careerRivals").textContent=
-    rivals;
-
-  $("careerBosses").textContent=
-    bosses;
-
-  $("careerCues").textContent=
-    cues;
-
-}
-
-
-/* ============================================================
-   HISTORY
-============================================================ */
-
-function renderHistory(){
-
-  const container=
-    $("history");
-
-  if(!state.history.length){
-
-    container.innerHTML=
-      '<div style="color:#858e9b;font-size:12px;">No previous sessions.</div>';
-
-    return;
-
-  }
-
-  container.innerHTML="";
-
-  state.history.slice(0,10).forEach(record=>{
-
-    const row=
-      document.createElement("div");
-
-    row.className=
-      "history-row";
-
-    const date=
-      new Date(record.date);
-
-    const dateText=
-      date.toLocaleDateString(
-        undefined,
-        {
-          month:"short",
-          day:"numeric"
-        }
-      );
-
-    const rivalName=
-      RIVALS[record.rival]
-        ? RIVALS[record.rival].name
-        : record.rival;
-
-    row.innerHTML=`
-
-      <div>
-        <strong>${escapeHTML(rivalName)}</strong>
-        <small>
-          ${escapeHTML(dateText)}
-          • ${record.density}×
-          • ${record.mode}
-        </small>
-      </div>
-
-      <div class="history-right">
-        ${record.completed} done<br>
-        Phase ${record.maxPhase}
-      </div>
-
-    `;
-
-    container.appendChild(row);
-
-  });
-
-}
-
-
-/* ============================================================
-   AGAIN
-============================================================ */
-
-$("again").addEventListener(
-  "click",
-  startSession
-);
-
-
-/* ============================================================
-   HOME
-============================================================ */
-
-$("homeButton").addEventListener(
-  "click",
-  ()=>{
-
-    clearTimers();
-
-    state.running=false;
-    state.paused=false;
-
-    showScreen("home");
-
-  }
-);
-
-
-/* ============================================================
-   KEYBOARD TEST MODE
-   ------------------------------------------------------------
-   Space / Enter = DONE
-
-   This is only a software testing input.
-   It is NOT movement detection.
-============================================================ */
+This is only a software testing input.
+It does NOT detect physical movement.
+====================================================== */
 
 document.addEventListener(
   "keydown",
-  event=>{
+  event => {
 
-    if(
-      state.screen!=="training" ||
-      event.repeat
-    ){
+    if (!state.running) {
+
       return;
+
     }
 
-    if(
-      event.key===" " ||
-      event.key==="Enter"
-    ){
+
+    if (
+      event.code === "Space" ||
+      event.code === "Enter"
+    ) {
 
       event.preventDefault();
 
-      completeCue();
+      respond("DONE");
 
     }
 
@@ -2484,74 +2587,27 @@ document.addEventListener(
 );
 
 
-/* ============================================================
-   CLEAR TIMERS
-============================================================ */
-
-function clearTimers(){
-
-  if(state.timer){
-
-    clearInterval(
-      state.timer
-    );
-
-    state.timer=null;
-
-  }
-
-  if(state.cueTimer){
-
-    clearTimeout(
-      state.cueTimer
-    );
-
-    state.cueTimer=null;
-
-  }
-
-}
-
-
-/* ============================================================
-   ESCAPE HTML
-============================================================ */
-
-function escapeHTML(value){
-
-  return String(value)
-
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-
-}
-
-
-/* ============================================================
-   RANDOM
-============================================================ */
-
-function random(array){
-
-  return array[
-    Math.floor(
-      Math.random()*array.length
-    )
-  ];
-
-}
-
-
-/* ============================================================
+/* ======================================================
    INITIALIZE
-============================================================ */
+====================================================== */
 
-loadData();
+updateRivalDisplay();
 
-renderHistory();
+state.stamina =
+  RIVALS[
+    $("rival").value
+  ].stamina;
+
+updateMeters();
+
+renderLog();
+
+$("timer").textContent =
+  formatTime(
+    Number(
+      $("duration").value
+    ) * 60
+  );
 
 </script>
 
